@@ -62,7 +62,7 @@ io.on('connection', function (socket) {
       motion.z
     );
     MongoClient.connect(url, function (err, db) {
-      assert(null, err);
+      if (err) throw err;
       var collection = db.collection('motion');
       collection.insertMany([
         {
@@ -73,7 +73,7 @@ io.on('connection', function (socket) {
           z: motion.z
         }
       ], function (err, result) {
-        assert.equal(null, err);
+        if (err) throw err;
       });
     });
   });
@@ -86,7 +86,7 @@ io.on('connection', function (socket) {
       orientation.gamma
     );
     MongoClient.connect(url, function (err, db) {
-      assert(null, err);
+      if (err) throw err;
       var collection = db.collection('orientation');
       collection.insertMany([
         {
@@ -97,7 +97,7 @@ io.on('connection', function (socket) {
           gamma: orientation.gamma
         }
       ], function (err, result) {
-        assert.equal(null, err);
+        if (err) throw err;
       });
     });
   });
